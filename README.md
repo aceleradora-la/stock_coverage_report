@@ -5,7 +5,6 @@ un Kanban de productos comprables almacenables agrupado por semáforo (rojo / am
 días de stock quedan con el consumo reciente.
 
 - Rama: `19.0` · Licencia: LGPL-3 · Dependencias: `stock`, `purchase_stock` (ambas existen en Community y Enterprise).
-- Nació como el tablero de cobertura del módulo `poultry_management`; ver [Bases que ya usan poultry_management](#bases-que-ya-usan-poultry_management).
 
 ## Qué calcula
 
@@ -42,23 +41,6 @@ visible solo para `stock.group_stock_manager`.
 
 Agregar el repo al `addons_path` y instalar `stock_coverage_report` (Apps o `-i stock_coverage_report`).
 Al instalarse recalcula los semáforos de todas las variantes almacenables en tandas de 2000.
-
-## Bases que ya usan poultry_management
-
-`poultry_management` sigue trayendo su propio tablero (Gestión Avícola → Reportes → Operación → Cobertura de stock)
-con los campos `poultry_cover_*`. Los dos módulos pueden convivir en la misma base: usan campos, vistas y menús
-distintos.
-
-Si se instala este módulo en una base que ya tiene `poultry_management`, el `post_init_hook` toma la configuración
-existente como punto de partida:
-
-| `poultry_management` | `stock_coverage_report` |
-|---|---|
-| `product.category.poultry_cover_window_days` | `product.category.stock_cover_window_days` |
-| `product.template.poultry_cover_window_days` | `product.template.stock_cover_window_days` |
-| `res.company.poultry_stock_dashboard_category_ids` | `res.company.stock_cover_category_ids` |
-
-La copia se hace una sola vez, al instalar; después cada módulo tiene su propia configuración.
 
 ## Tests
 
