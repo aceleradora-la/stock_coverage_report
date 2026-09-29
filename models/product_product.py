@@ -35,7 +35,7 @@ class ProductProduct(models.Model):
 
     stock_cover_daily_avg = fields.Float(
         string='Daily consumption (window)',
-        digits='Product Unit of Measure',
+        digits='Product Unit',
         compute='_compute_stock_cover_metrics',
         help='Daily average of outgoing moves from internal stock over the configured window '
              '(product unit of measure).',
