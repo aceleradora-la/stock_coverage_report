@@ -22,6 +22,20 @@
     box-sizing: border-box;
 }
 
+/* Product image: small thumbnail, never the full card width */
+.o_stock_cover_report .o_stock_cover_image {
+    width: 64px;
+    min-width: 64px;
+    max-width: 64px;
+}
+
+.o_stock_cover_report .o_stock_cover_image img {
+    width: 64px;
+    height: 64px;
+    max-width: 64px;
+    max-height: 64px;
+}
+
 /* Odoo field content inside the disk */
 .o_stock_cover_report .o_stock_cover_disk .o_field_widget,
 .o_stock_cover_report .o_stock_cover_disk span {
