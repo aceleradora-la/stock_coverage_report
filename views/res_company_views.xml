@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_stock_cover" model="ir.ui.view">
+        <field name="name">res.company.form.stock.cover</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page string="Stock Coverage" name="stock_cover_page"
+                      groups="stock.group_stock_user">
+                    <group>
+                        <field name="stock_cover_category_ids"
+                               widget="many2many_tags"
+                               placeholder="All categories"
+                               options="{'no_create_edit': True}"/>
+                    </group>
+                    <div class="text-muted">
+                        If no category is selected, the report includes every purchasable storable product. With categories, only variants in those categories (subcategories included) are shown.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

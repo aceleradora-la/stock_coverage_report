@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_stock_cover_report"
+              name="Stock Coverage"
+              parent="stock.menu_warehouse_report"
+              action="action_stock_cover_report"
+              sequence="160"
+              groups="stock.group_stock_user"/>
+</odoo>

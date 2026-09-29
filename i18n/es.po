@@ -1,0 +1,239 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_coverage_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.view_company_form_stock_cover
+msgid "All categories"
+msgstr "Todas las categorías"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_search_stock_cover
+msgid "Category"
+msgstr "Categoría"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_product_template__stock_cover_window_days
+msgid "Closed calendar days (company timezone) used for consumption: day (today - N) 00:00 to yesterday 23:59, today excluded. Leave empty to use the product category value."
+msgstr "Días calendario cerrados (TZ compañía) para consumo: día (hoy−N) 00:00 a ayer 23:59, sin hoy. Dejar vacío para usar la categoría."
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_product_category__stock_cover_window_days
+msgid "Closed calendar days (company timezone) used to sum outgoing moves: from day (today - N) 00:00 to yesterday 23:59. Today is not included. The total is divided by N."
+msgstr "Días calendario cerrados (TZ de la compañía) para sumar salidas: desde el día (hoy−N) 00:00 hasta ayer 23:59. No incluye el día en curso. El total se divide entre N."
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_category__stock_cover_window_days
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_template__stock_cover_window_days
+msgid "Consumption window (days)"
+msgstr "Días ventana consumo"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Consumption/day"
+msgstr "Consumo/día"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_forecast_days
+msgid "Coverage days (forecast)"
+msgstr "Días cobertura (pronóstico)"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_forecast_days_display
+msgid "Coverage days (forecast) display"
+msgstr "Días cobertura pronóstico"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_days
+msgid "Coverage days (on hand)"
+msgstr "Días de cobertura (real)"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_days_display
+msgid "Coverage days (on hand) display"
+msgstr "Días cobertura (real)"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_forecast_signal
+msgid "Coverage signal (forecast)"
+msgstr "Semáforo cobertura (pronóstico)"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_signal
+msgid "Coverage signal (on hand)"
+msgstr "Semáforo cobertura (real)"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_sort_days
+msgid "Coverage sort key (days)"
+msgstr "Orden cobertura (días)"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_product_product__stock_cover_daily_avg
+msgid "Daily average of outgoing moves from internal stock over the configured window (product unit of measure)."
+msgstr "Promedio diario de salidas desde stock interno en la ventana configurada (UdM del producto)."
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_product_product__stock_cover_daily_avg
+msgid "Daily consumption (window)"
+msgstr "Consumo diario (ventana)"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Forecast"
+msgstr "Pronóst."
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Forecast coverage: green"
+msgstr "Cobertura pronóstico: verde"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Forecast coverage: no data"
+msgstr "Cobertura pronóstico: sin datos"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Forecast coverage: red"
+msgstr "Cobertura pronóstico: rojo"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Forecast coverage: yellow"
+msgstr "Cobertura pronóstico: amarillo"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Forecasted"
+msgstr "Pronosticada"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_product_product__stock_cover_forecast_days
+msgid "Forecasted quantity (virtual_available) / daily consumption."
+msgstr "Cantidad pronosticada (virtual_available) / consumo diario."
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_template_form_view_stock_cover
+msgid "From category"
+msgstr "Desde categoría"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_forecast_signal__green
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_signal__green
+msgid "Green"
+msgstr "Verde"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_res_company__stock_cover_category_ids
+msgid "If empty, the stock coverage report includes every purchasable storable product. If categories are set, only variants in those categories (and their subcategories) are shown."
+msgstr "Si está vacío, el reporte incluye todos los productos comprables almacenables. Si selecciona categorías, solo se muestran variantes de esas categorías (y sus subcategorías)."
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.view_company_form_stock_cover
+msgid "If no category is selected, the report includes every purchasable storable product. With categories, only variants in those categories (subcategories included) are shown."
+msgstr "Si no selecciona categorías, el reporte incluye todos los productos comprables almacenables. Con categorías, solo variantes de esas categorías (incluye subcategorías)."
+
+#. module: stock_coverage_report
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_forecast_signal__neutral
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_signal__neutral
+msgid "No data"
+msgstr "Sin datos"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "On hand"
+msgstr "Real"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "On hand (company)"
+msgstr "A la mano (empresa)"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "On hand coverage: green"
+msgstr "Cobertura real: verde"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "On hand coverage: no data"
+msgstr "Cobertura real: sin datos"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "On hand coverage: red"
+msgstr "Cobertura real: rojo"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "On hand coverage: yellow"
+msgstr "Cobertura real: amarillo"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_product_product__stock_cover_days
+msgid "On hand quantity / daily consumption. Empty if there was no consumption in the window."
+msgstr "Cantidad a la mano / consumo diario. Vacío si no hubo consumo en el período."
+
+#. module: stock_coverage_report
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_forecast_signal__red
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_signal__red
+msgid "Red"
+msgstr "Rojo"
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_kanban_stock_cover
+msgid "Ref."
+msgstr "Ref."
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,help:stock_coverage_report.field_product_product__stock_cover_sort_days
+msgid "Sort key for the Kanban board: lower = more urgent (internal use only)."
+msgstr "Clave para ordenar el tablero Kanban: menor = más urgente (solo uso interno)."
+
+#. module: stock_coverage_report
+#: code:addons/stock_coverage_report/models/product_product.py:0
+#: model:ir.actions.server,name:stock_coverage_report.action_stock_cover_report
+#: model:ir.ui.menu,name:stock_coverage_report.menu_stock_cover_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_category_form_view_stock_cover
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_template_form_view_stock_cover
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.view_company_form_stock_cover
+msgid "Stock Coverage"
+msgstr "Cobertura de stock"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields,field_description:stock_coverage_report.field_res_company__stock_cover_category_ids
+msgid "Stock coverage: categories"
+msgstr "Cobertura de stock: categorías"
+
+#. module: stock_coverage_report
+#: code:addons/stock_coverage_report/models/product_template.py:0
+msgid "The consumption window cannot be negative."
+msgstr "Los días de ventana de consumo no pueden ser negativos."
+
+#. module: stock_coverage_report
+#: code:addons/stock_coverage_report/models/product_category.py:0
+msgid "The consumption window of a product category must be greater than zero."
+msgstr "En la categoría, los días de ventana de consumo deben ser mayores que cero."
+
+#. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_search_stock_cover
+msgid "With coverage data"
+msgstr "Con datos de cobertura"
+
+#. module: stock_coverage_report
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_forecast_signal__yellow
+#: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_signal__yellow
+msgid "Yellow"
+msgstr "Amarillo"

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Primary view: inherits the standard variant search view but is NOT injected into the
+         other product.product search views. As an extension, its <searchpanel>
+         would be added to the Stock report one (stock.product_search_form_view_stock_report)
+         and break it with "Search tag can only contain one search panel". -->
+    <record id="product_product_search_stock_cover" model="ir.ui.view">
+        <field name="name">product.product.search.stock.cover</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="With coverage data" name="stock_cover_with_data"
+                        domain="[('stock_cover_signal', 'in', ('red', 'yellow', 'green'))]"/>
+                <searchpanel>
+                    <field name="categ_id" string="Category" icon="fa-filter" enable_counters="1" hierarchize="1" select="multi"/>
+                </searchpanel>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_product_kanban_stock_cover" model="ir.ui.view">
+        <field name="name">product.product.kanban.stock.cover</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <kanban create="false"
+                    class="o_stock_cover_report"
+                    default_group_by="stock_cover_signal"
+                    default_order="stock_cover_sort_days asc, id asc"
+                    decoration-success="stock_cover_signal == 'green'"
+                    decoration-danger="stock_cover_signal == 'red'"
+                    decoration-muted="stock_cover_signal == 'neutral'">
+                <field name="stock_cover_signal"/>
+                <field name="stock_cover_sort_days" invisible="1"/>
+                <field name="stock_cover_forecast_signal"/>
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="default_code"/>
+                <field name="image_128"/>
+                <field name="qty_available"/>
+                <field name="virtual_available"/>
+                <field name="uom_id"/>
+                <field name="stock_cover_daily_avg"/>
+                <field name="stock_cover_days_display"/>
+                <field name="stock_cover_forecast_days_display"/>
+                <templates>
+                    <!-- Odoo 19: the kanban-box template was renamed to card. -->
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click p-2">
+                            <div class="o_kanban_record_top d-flex mb-2">
+                                <field name="image_128" widget="image" options="{'img_class': 'rounded-3 object-fit-contain'}" class="o_kanban_image flex-shrink-0 me-2"/>
+                                <div class="o_kanban_record_headings flex-grow-1 min-w-0">
+                                    <strong class="o_kanban_record_title d-block"><field name="display_name"/></strong>
+                                    <span t-if="record.default_code.raw_value" class="text-muted small d-block">
+                                        Ref. <field name="default_code"/>
+                                    </span>
+                                    <div class="d-flex flex-wrap align-items-end gap-3 mt-2">
+                                        <div class="o_stock_cover_disk-group o_stock_cover_disk-group--real text-center">
+                                            <div class="text-muted text-uppercase mb-1 o_stock_cover_disk-label">On hand</div>
+                                            <t t-if="record.stock_cover_signal.raw_value == 'red'">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--red" title="On hand coverage: red">
+                                                    <field name="stock_cover_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                            <t t-elif="record.stock_cover_signal.raw_value == 'yellow'">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--yellow" title="On hand coverage: yellow">
+                                                    <field name="stock_cover_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                            <t t-elif="record.stock_cover_signal.raw_value == 'green'">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--green" title="On hand coverage: green">
+                                                    <field name="stock_cover_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--neutral" title="On hand coverage: no data">
+                                                    <field name="stock_cover_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                        </div>
+                                        <div class="o_stock_cover_disk-group o_stock_cover_disk-group--fcst text-center">
+                                            <div class="text-muted text-uppercase mb-1 o_stock_cover_disk-label">Forecast</div>
+                                            <t t-if="record.stock_cover_forecast_signal.raw_value == 'red'">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--red" title="Forecast coverage: red">
+                                                    <field name="stock_cover_forecast_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                            <t t-elif="record.stock_cover_forecast_signal.raw_value == 'yellow'">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--yellow" title="Forecast coverage: yellow">
+                                                    <field name="stock_cover_forecast_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                            <t t-elif="record.stock_cover_forecast_signal.raw_value == 'green'">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--green" title="Forecast coverage: green">
+                                                    <field name="stock_cover_forecast_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="o_stock_cover_disk o_stock_cover_disk--neutral" title="Forecast coverage: no data">
+                                                    <field name="stock_cover_forecast_days_display" readonly="1" nolabel="1"/>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row small g-1 mt-1">
+                                <div class="col-6">
+                                    <span class="text-muted">On hand (company)</span>
+                                    <div><field name="qty_available"/> <field name="uom_id" readonly="1" class="d-inline"/></div>
+                                    <div class="mt-1 pt-1 border-top border-light">
+                                        <span class="text-muted">Forecasted</span>
+                                        <div><field name="virtual_available"/> <field name="uom_id" readonly="1" class="d-inline"/></div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted">Consumption/day</span>
+                                    <div><field name="stock_cover_daily_avg"/></div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_stock_cover_report" model="ir.actions.server">
+        <field name="name">Stock Coverage</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">action = env['product.product'].action_open_stock_cover_report()</field>
+    </record>
+</odoo>
