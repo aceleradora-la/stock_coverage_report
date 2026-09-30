@@ -29,7 +29,7 @@ tarjeta muestra también el pronóstico. Los productos "sin datos" quedan fuera 
 
 | Dónde | Campo | Efecto |
 |---|---|---|
-| Categoría de producto | Días ventana consumo (`stock_cover_window_days`, default 7) | Ventana N para los productos de la categoría. Debe ser > 0. |
+| Categoría de producto | Días ventana consumo (`stock_cover_window_days`) | Ventana N para los productos de la categoría y sus subcategorías. Vacío = hereda de la categoría padre más cercana que la tenga; si ninguna de la cadena la tiene, 7 días. |
 | Producto (pestaña Inventario) | Días ventana consumo (`stock_cover_window_days`) | Pisa la de la categoría. Vacío = usar la categoría. |
 | Compañía (pestaña Cobertura de stock) | Categorías (`stock_cover_category_ids`) | Si hay categorías, el tablero solo muestra variantes de esas categorías (y subcategorías). Vacío = todas. |
 | Ajustes de Compras / compañía | `days_to_purchase` | Ancho de la banda amarilla. |
@@ -49,7 +49,7 @@ odoo-bin -d <db> -i stock_coverage_report --test-enable --test-tags /stock_cover
 ```
 
 Cubren: semáforo rojo/amarillo/verde/sin datos, umbrales (proveedor, `days_to_purchase`, parámetro `use_po_lead`
-heredado), fallback de ventana producto → categoría → 7, constraints, ventana de días cerrados (hoy no cuenta),
+heredado), fallback de ventana producto → categoría → categorías padre → 7, constraints, ventana de días cerrados (hoy no cuenta),
 orden fijo de columnas y filtro por categorías de la compañía.
 
 ### Checklist Community / Enterprise

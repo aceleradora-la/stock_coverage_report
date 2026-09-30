@@ -3,6 +3,8 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
+from .product_category import DEFAULT_WINDOW_DAYS
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -14,7 +16,8 @@ class ProductTemplate(models.Model):
         digits=(16, 1),
         default=False,
         help='Closed calendar days (company timezone) used for consumption: day (today - N) 00:00 '
-             'to yesterday 23:59, today excluded. Leave empty to use the product category value.',
+             'to yesterday 23:59, today excluded. Leave empty to use the product category value '
+             '(inherited from the parent categories if empty).',
     )
 
     @api.model_create_multi
@@ -37,12 +40,13 @@ class ProductTemplate(models.Model):
                 raise ValidationError(self.env._('The consumption window cannot be negative.'))
 
     def _stock_cover_effective_window_days(self):
-        """Product window if set, else category window, else 7 (never below 1)."""
+        """Product window if set, else the category chain's (see product.category), never below 1."""
         self.ensure_one()
         w_prod = self.stock_cover_window_days
         if w_prod not in (False, None) and float(w_prod) > 0:
             w = float(w_prod)
+        elif self.categ_id:
+            w = self.categ_id._stock_cover_effective_window_days()
         else:
-            w = self.categ_id.stock_cover_window_days
-        w = float(w or 7.0)
+            w = DEFAULT_WINDOW_DAYS
         return max(w, 1.0)

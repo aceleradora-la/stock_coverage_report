@@ -208,6 +208,8 @@ class ProductProduct(models.Model):
         'uom_id',
         'product_tmpl_id.stock_cover_window_days',
         'product_tmpl_id.categ_id.stock_cover_window_days',
+        'product_tmpl_id.categ_id.parent_id.stock_cover_window_days',
+        'product_tmpl_id.categ_id.parent_path',
         'product_tmpl_id.seller_ids',
         'product_tmpl_id.seller_ids.delay',
         'product_tmpl_id.seller_ids.sequence',

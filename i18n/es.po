@@ -25,13 +25,13 @@ msgstr "Categoría"
 
 #. module: stock_coverage_report
 #: model:ir.model.fields,help:stock_coverage_report.field_product_template__stock_cover_window_days
-msgid "Closed calendar days (company timezone) used for consumption: day (today - N) 00:00 to yesterday 23:59, today excluded. Leave empty to use the product category value."
-msgstr "Días calendario cerrados (TZ compañía) para consumo: día (hoy−N) 00:00 a ayer 23:59, sin hoy. Dejar vacío para usar la categoría."
+msgid "Closed calendar days (company timezone) used for consumption: day (today - N) 00:00 to yesterday 23:59, today excluded. Leave empty to use the product category value (inherited from the parent categories if empty)."
+msgstr "Días calendario cerrados (TZ compañía) para consumo: día (hoy−N) 00:00 a ayer 23:59, sin hoy. Dejar vacío para usar el de la categoría (heredado de las categorías padre si está vacío)."
 
 #. module: stock_coverage_report
 #: model:ir.model.fields,help:stock_coverage_report.field_product_category__stock_cover_window_days
-msgid "Closed calendar days (company timezone) used to sum outgoing moves: from day (today - N) 00:00 to yesterday 23:59. Today is not included. The total is divided by N."
-msgstr "Días calendario cerrados (TZ de la compañía) para sumar salidas: desde el día (hoy−N) 00:00 hasta ayer 23:59. No incluye el día en curso. El total se divide entre N."
+msgid "Closed calendar days (company timezone) used to sum outgoing moves: from day (today - N) 00:00 to yesterday 23:59. Today is not included. The total is divided by N. Leave empty to use the parent category value (7 days if no category of the chain has one)."
+msgstr "Días calendario cerrados (TZ de la compañía) para sumar salidas: desde el día (hoy−N) 00:00 hasta ayer 23:59. No incluye el día en curso. El total se divide entre N. Dejar vacío para usar el de la categoría padre (7 días si ninguna categoría de la cadena lo define)."
 
 #. module: stock_coverage_report
 #: model:ir.model.fields,field_description:stock_coverage_report.field_product_category__stock_cover_window_days
@@ -130,6 +130,11 @@ msgid "From category"
 msgstr "Desde categoría"
 
 #. module: stock_coverage_report
+#: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_category_form_view_stock_cover
+msgid "From parent category"
+msgstr "Desde categoría padre"
+
+#. module: stock_coverage_report
 #: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_forecast_signal__green
 #: model:ir.model.fields.selection,name:stock_coverage_report.selection__product_product__stock_cover_signal__green
 msgid "Green"
@@ -217,14 +222,10 @@ msgid "Stock coverage: categories"
 msgstr "Cobertura de stock: categorías"
 
 #. module: stock_coverage_report
+#: code:addons/stock_coverage_report/models/product_category.py:0
 #: code:addons/stock_coverage_report/models/product_template.py:0
 msgid "The consumption window cannot be negative."
 msgstr "Los días de ventana de consumo no pueden ser negativos."
-
-#. module: stock_coverage_report
-#: code:addons/stock_coverage_report/models/product_category.py:0
-msgid "The consumption window of a product category must be greater than zero."
-msgstr "En la categoría, los días de ventana de consumo deben ser mayores que cero."
 
 #. module: stock_coverage_report
 #: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_product_search_stock_cover

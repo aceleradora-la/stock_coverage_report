@@ -92,15 +92,35 @@ class TestStockCover(TransactionCase):
         tmpl.write({'stock_cover_window_days': 0})
         self.assertFalse(tmpl.stock_cover_window_days)
         self.assertEqual(tmpl._stock_cover_effective_window_days(), 10.0)
-        # a new category defaults to 7 days
+        # a category without window and without parents falls back to 7 days
         categ = self.env['product.category'].create({'name': 'Default window'})
-        self.assertEqual(categ.stock_cover_window_days, 7.0)
+        self.assertFalse(categ.stock_cover_window_days)
         tmpl.categ_id = categ
         self.assertEqual(tmpl._stock_cover_effective_window_days(), 7.0)
 
+    def test_window_inherited_from_parent_category(self):
+        Category = self.env['product.category']
+        root = Category.create({'name': 'Raw material', 'stock_cover_window_days': 30.0})
+        child = Category.create({'name': 'Juices', 'parent_id': root.id})
+        grandchild = Category.create({'name': 'Lemon', 'parent_id': child.id})
+        self.assertEqual(grandchild._stock_cover_effective_window_days(), 30.0)
+        # 0 (cleared in the form) also means "inherit"
+        child.stock_cover_window_days = 0
+        self.assertFalse(child.stock_cover_window_days)
+        self.assertEqual(child._stock_cover_effective_window_days(), 30.0)
+        # the closest ancestor with a value wins
+        child.stock_cover_window_days = 14.0
+        self.assertEqual(grandchild._stock_cover_effective_window_days(), 14.0)
+        grandchild.stock_cover_window_days = 5.0
+        self.assertEqual(grandchild._stock_cover_effective_window_days(), 5.0)
+        # the product follows its category chain unless it has its own window
+        product = self._create_product(categ_id=grandchild.id)
+        grandchild.stock_cover_window_days = False
+        self.assertEqual(product.product_tmpl_id._stock_cover_effective_window_days(), 14.0)
+        product.product_tmpl_id.stock_cover_window_days = 3.0
+        self.assertEqual(product.product_tmpl_id._stock_cover_effective_window_days(), 3.0)
+
     def test_constraints(self):
-        with self.assertRaises(ValidationError):
-            self.categ.stock_cover_window_days = 0.0
         with self.assertRaises(ValidationError):
             self.categ.stock_cover_window_days = -1.0
         product = self._create_product()

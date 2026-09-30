@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='first']" position="after">
                 <group string="Stock Coverage" name="stock_cover_category_group">
-                    <field name="stock_cover_window_days"/>
+                    <field name="stock_cover_window_days" placeholder="From parent category"/>
                 </group>
             </xpath>
         </field>
