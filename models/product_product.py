@@ -87,6 +87,9 @@ class ProductProduct(models.Model):
         if float_is_zero(daily, precision_rounding=rounding):
             if float_is_zero(qty, precision_rounding=rounding):
                 return False, '—', 'neutral', _SORT_TAIL
+            if qty < 0:
+                # Negative stock is a shortage, whatever the recent consumption.
+                return 0.0, '0', 'red', 0.0
             return False, '∞', 'green', _SORT_TAIL
         days = qty / daily if daily else 0.0
         days_rounded = float_round(days, precision_rounding=0.01)
@@ -332,7 +335,9 @@ class ProductProduct(models.Model):
         search_view = self.env.ref('stock_coverage_report.product_product_search_stock_cover')
         return {
             'type': 'ir.actions.act_window',
-            'name': self.env._('Stock Coverage'),
+            # The server action name is translated like any record (a code term would need
+            # a server restart to reload its translations).
+            'name': self.env.ref('stock_coverage_report.action_stock_cover_report').name,
             'res_model': 'product.product',
             'view_mode': 'kanban',
             'views': [(kanban_view.id, 'kanban')],

@@ -203,7 +203,6 @@ msgid "Sort key for the Kanban board: lower = more urgent (internal use only)."
 msgstr "Clave para ordenar el tablero Kanban: menor = más urgente (solo uso interno)."
 
 #. module: stock_coverage_report
-#: code:addons/stock_coverage_report/models/product_product.py:0
 #: model:ir.actions.server,name:stock_coverage_report.action_stock_cover_report
 #: model:ir.ui.menu,name:stock_coverage_report.menu_stock_cover_report
 #: model_terms:ir.ui.view,arch_db:stock_coverage_report.product_category_form_view_stock_cover

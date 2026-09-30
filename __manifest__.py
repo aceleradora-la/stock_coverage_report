@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Stock Coverage Report',
-    'version': '19.0.1.0.2',
+    'version': '19.0.1.0.3',
     'category': 'Inventory/Inventory',
     'summary': 'Kanban board with days of stock coverage and a traffic light '
                'based on vendor lead time',

@@ -67,6 +67,10 @@ class TestStockCover(TransactionCase):
         self.assertEqual(metrics(0.0, 0.01, 0.0, 5.0, 7.0)[1:3], ('—', 'neutral'))
         # no consumption, stock -> infinite, green
         self.assertEqual(metrics(0.0, 0.01, 10.0, 5.0, 7.0)[1:3], ('∞', 'green'))
+        # no consumption, negative stock -> shortage, red
+        self.assertEqual(metrics(0.0, 0.01, -56.0, 5.0, 7.0)[1:3], ('0', 'red'))
+        # consumption and negative stock -> red
+        self.assertEqual(metrics(2.0, 0.01, -10.0, 5.0, 7.0)[2], 'red')
         # 10 / 2 = 5 days <= lead time 5 -> red
         self.assertEqual(metrics(2.0, 0.01, 10.0, 5.0, 7.0)[0:3:2], (5.0, 'red'))
         # 12 / 2 = 6 days, between 5 and 7 -> yellow
